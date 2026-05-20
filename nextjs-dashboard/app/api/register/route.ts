@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import { sql } from '@/app/lib/db'

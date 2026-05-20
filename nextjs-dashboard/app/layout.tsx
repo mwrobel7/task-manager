@@ -1,3 +1,6 @@
+// @ts-ignore: allow importing global CSS without module declarations
+import "./globals.css";
+
 export default function RootLayout({
   children,
 }: {

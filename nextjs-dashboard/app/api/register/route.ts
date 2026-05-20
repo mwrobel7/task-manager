@@ -22,12 +22,12 @@ export async function POST(req: Request) {
       )
     }
 
-    const existingUser = await sql`
-      SELECT * FROM temporary_users
-      WHERE email = ${email}
-    `
+    const existingUser = await pool.query(
+      'SELECT * FROM temporary_users WHERE email = $1',
+      [email]
+    )
 
-    if (existingUser.length > 0) {
+    if (existingUser.rows.length > 0) {
       return NextResponse.json(
         { error: 'Email już istnieje' },
         { status: 409 }
@@ -36,20 +36,18 @@ export async function POST(req: Request) {
 
     const passwordHash = await bcrypt.hash(password, 10)
 
-    await sql`
-      INSERT INTO temporary_users (
-        first_name,
-        last_name,
-        email,
-        password_hash
-      )
-      VALUES (
-        ${firstName},
-        ${lastName},
-        ${email},
-        ${passwordHash}
-      )
-    `
+    await pool.query(
+      `
+        INSERT INTO temporary_users (
+          first_name,
+          last_name,
+          email,
+          password_hash
+        )
+        VALUES ($1, $2, $3, $4)
+      `,
+      [firstName, lastName, email, passwordHash]
+    )
 
     return NextResponse.json({
       success: true,

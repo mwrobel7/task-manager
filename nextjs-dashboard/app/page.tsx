@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div className='body'>
+    <div>
       <header>
         <nav>
           <Link href={"/settings"}>Ustawienia konta</Link>

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Register()
 {
     return (
-        <div className="form">
+        <div>
             <form>
                 <h2>Rejestracja</h2>
                 <br/><br/>

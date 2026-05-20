@@ -1,5 +1,3 @@
-// @ts-ignore: Allow importing global CSS file without type declarations
-import "./style.css";
 export default function RootLayout({
   children,
 }: {

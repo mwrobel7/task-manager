@@ -2,7 +2,7 @@ export const runtime = 'nodejs'
 
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
-import { sql } from '@/app/lib/db'
+import { pool } from '@/app/lib/db'
 
 export async function POST(req: Request) {
   try {

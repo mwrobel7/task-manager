@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Register()
 {
     return (
@@ -16,7 +18,6 @@ export default function Register()
                 <br/><br/>
                 <button type="submit">Zarejestruj się</button>
                 <br/><br/><br/><br/>
-                <a href="login.html">Masz już konto? Zaloguj się</a>
             </form>
 
         </div>

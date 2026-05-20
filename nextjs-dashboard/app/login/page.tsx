@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Login()
 {
     return (
-        <div className = "form">
+        <div className="form">
             <form>
                 <h2>Logowanie</h2>
                 <br/><br/>

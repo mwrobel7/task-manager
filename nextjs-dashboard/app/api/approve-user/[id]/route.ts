@@ -6,8 +6,9 @@ import { transporter } from '@/app/lib/mail'
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params
   try {
     const body = await req.json()
 
@@ -24,7 +25,7 @@ export async function POST(
         FROM temporary_users
         WHERE id = $1
       `,
-      [params.id]
+      [id]
     )
 
     const tempUser = tempUserResult.rows[0]
@@ -56,7 +57,7 @@ export async function POST(
         DELETE FROM temporary_users
         WHERE id = $1
       `,
-      [params.id]
+      [id]
     )
 
     await transporter.sendMail({

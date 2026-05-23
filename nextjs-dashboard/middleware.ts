@@ -2,16 +2,28 @@ import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get('token')?.value
-
   const pathname = req.nextUrl.pathname
 
-  // pozwól wejść na login
-  if (pathname === '/login') {
+  // public routes
+  const publicRoutes = [
+    '/login',
+  ]
+
+  if (publicRoutes.includes(pathname)) {
     return NextResponse.next()
   }
 
-  // brak tokena
+  // ignoruj API i Next assets
+  if (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/_next') ||
+    pathname.includes('.')
+  ) {
+    return NextResponse.next()
+  }
+
+  const token = req.cookies.get('token')?.value
+
   if (!token) {
     return NextResponse.redirect(
       new URL('/login', req.url)
@@ -26,17 +38,16 @@ export function middleware(req: NextRequest) {
       admin: boolean
     }
 
-    // blokada admin dashboard
     const adminRoutes = [
-        '/admin-dashboard',
-        '/add-user',
-        '/app-settings',
-        '/users',
-        '/all-tasks',
+      '/admin-dashboard',
+      '/add-user',
+      '/app-settings',
+      '/users',
+      '/all-tasks',
     ]
 
     const isAdminRoute = adminRoutes.some((route) =>
-    pathname.startsWith(route)
+      pathname.startsWith(route)
     )
 
     if (isAdminRoute && !decoded.admin) {
@@ -54,9 +65,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/dashboard/:path*',
-    '/admin-dashboard/:path*',
-    '/add-user/:path*',
-  ],
+  matcher: '/:path*',
 }

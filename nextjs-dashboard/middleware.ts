@@ -28,8 +28,11 @@ export function middleware(req: NextRequest) {
 
     // blokada admin dashboard
     const adminRoutes = [
-    '/admin-dashboard',
-    '/add-user',
+        '/admin-dashboard',
+        '/add-user',
+        '/app-settings',
+        '/users',
+        '/all-tasks',
     ]
 
     const isAdminRoute = adminRoutes.some((route) =>

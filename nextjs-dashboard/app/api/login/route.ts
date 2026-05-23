@@ -2,21 +2,14 @@ export const runtime = 'nodejs'
 
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
-import { pool } from '@/app/lib/db'
 import jwt from 'jsonwebtoken'
+import { pool } from '@/app/lib/db'
 
 export async function POST(req: Request) {
   try {
     const body = await req.json()
 
     const { email, password } = body
-
-    if (!email || !password) {
-      return NextResponse.json(
-        { error: 'Wszystkie pola są wymagane' },
-        { status: 400 }
-      )
-    }
 
     const result = await pool.query(
       `
@@ -49,29 +42,28 @@ export async function POST(req: Request) {
     }
 
     const token = jwt.sign(
-    {
+      {
         id: user.id,
         firstName: user.first_name,
         admin: user.admin,
-    },
-    process.env.JWT_SECRET!,
-    {
+      },
+      process.env.JWT_SECRET!,
+      {
         expiresIn: '7d',
-    }
+      }
     )
 
     const response = NextResponse.json({
-    success: true, admin: user.admin,
+      success: true,
+      admin: user.admin,
     })
 
-    response.cookies.set({
-        name: 'token',
-        value: token,
-        httpOnly: true,
-        secure: true,
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7,
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
     })
 
     return response

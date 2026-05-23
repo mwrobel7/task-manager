@@ -1,0 +1,83 @@
+export const runtime = 'nodejs'
+
+import { NextResponse } from 'next/server'
+import bcrypt from 'bcrypt'
+import { pool } from '@/app/lib/db'
+import jwt from 'jsonwebtoken'
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json()
+
+    const { email, password } = body
+
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: 'Wszystkie pola są wymagane' },
+        { status: 400 }
+      )
+    }
+
+    const result = await pool.query(
+      `
+        SELECT *
+        FROM users
+        WHERE email = $1
+      `,
+      [email]
+    )
+
+    if (result.rows.length === 0) {
+      return NextResponse.json(
+        { error: 'Nieprawidłowe dane logowania' },
+        { status: 401 }
+      )
+    }
+
+    const user = result.rows[0]
+
+    const passwordMatch = await bcrypt.compare(
+      password,
+      user.password_hash
+    )
+
+    if (!passwordMatch) {
+      return NextResponse.json(
+        { error: 'Nieprawidłowe dane logowania' },
+        { status: 401 }
+      )
+    }
+
+    const token = jwt.sign(
+    {
+        id: user.id,
+        firstName: user.first_name,
+        admin: user.admin,
+    },
+    process.env.JWT_SECRET!,
+    {
+        expiresIn: '7d',
+    }
+    )
+
+    const response = NextResponse.json({
+    success: true,
+    })
+
+    response.cookies.set('token', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+    path: '/',
+    })
+
+    return response
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      { error: 'Błąd serwera' },
+      { status: 500 }
+    )
+  }
+}

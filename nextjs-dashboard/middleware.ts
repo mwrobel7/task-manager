@@ -1,48 +1,59 @@
-// import { NextRequest, NextResponse } from 'next/server'
-// import jwt from 'jsonwebtoken'
+import { NextRequest, NextResponse } from 'next/server'
+import jwt from 'jsonwebtoken'
 
-// export function middleware(req: NextRequest) {
-//   const token = req.cookies.get('token')?.value
+export function middleware(req: NextRequest) {
+  const token = req.cookies.get('token')?.value
 
-//   const pathname = req.nextUrl.pathname
+  const pathname = req.nextUrl.pathname
 
-//   if (!token) {
-//     return NextResponse.redirect(
-//       new URL('/login', req.url)
-//     )
-//   }
+  // pozwól wejść na login
+  if (pathname === '/login') {
+    return NextResponse.next()
+  }
 
-//   try {
-//     const decoded = jwt.verify(
-//       token,
-//       process.env.JWT_SECRET!
-//     ) as {
-//       admin: boolean
-//     }
+  // brak tokena
+  if (!token) {
+    return NextResponse.redirect(
+      new URL('/login', req.url)
+    )
+  }
 
-//     if (
-//       pathname.startsWith('/admin-dashboard') &&
-//       !decoded.admin
-//     ) {
-//       return NextResponse.redirect(
-//         new URL('/dashboard', req.url)
-//       )
-//     }
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET!
+    ) as {
+      admin: boolean
+    }
 
-//     return NextResponse.next()
-//   } catch {
-//     return NextResponse.redirect(
-//       new URL('/login', req.url)
-//     )
-//   }
-// }
+    // blokada admin dashboard
+    const adminRoutes = [
+    '/admin-dashboard',
+    '/add-user',
+    ]
 
-// export const config = {
-//   matcher: ['/dashboard/:path*', '/admin-dashboard/:path*'],
-// }
+    const isAdminRoute = adminRoutes.some((route) =>
+    pathname.startsWith(route)
+    )
 
-import { NextResponse } from 'next/server'
+    if (isAdminRoute && !decoded.admin) {
+      return NextResponse.redirect(
+        new URL('/dashboard', req.url)
+      )
+    }
 
-export function middleware() {
-  return NextResponse.next()
+    return NextResponse.next()
+  } catch {
+    return NextResponse.redirect(
+      new URL('/login', req.url)
+    )
+  }
+}
+
+export const config = {
+  matcher: [
+    '/dashboard/:path*',
+    '/admin-dashboard/:path*',
+    '/add-user/:path*',
+  ],
 }

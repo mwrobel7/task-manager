@@ -64,11 +64,14 @@ export async function POST(req: Request) {
     success: true, admin: user.admin,
     })
 
-    response.cookies.set('token', token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'strict',
-    path: '/',
+    response.cookies.set({
+        name: 'token',
+        value: token,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
     })
 
     return response

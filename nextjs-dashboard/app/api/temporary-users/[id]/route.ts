@@ -5,8 +5,9 @@ import { pool } from '@/app/lib/db'
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params
   try {
     const result = await pool.query(
       `
@@ -14,7 +15,7 @@ export async function GET(
         FROM temporary_users
         WHERE id = $1
       `,
-      [params.id]
+      [id]
     )
 
     return NextResponse.json({

@@ -2,26 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 
 export function middleware(req: NextRequest) {
-  const pathname = req.nextUrl.pathname
-
-  // public routes
-  const publicRoutes = [
-    '/login',
-  ]
-
-  if (publicRoutes.includes(pathname)) {
-    return NextResponse.next()
-  }
-
-  // ignoruj API i Next assets
-  if (
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/_next') ||
-    pathname.includes('.')
-  ) {
-    return NextResponse.next()
-  }
-
   const token = req.cookies.get('token')?.value
 
   if (!token) {
@@ -37,6 +17,8 @@ export function middleware(req: NextRequest) {
     ) as {
       admin: boolean
     }
+
+    const pathname = req.nextUrl.pathname
 
     const adminRoutes = [
       '/admin-dashboard',
@@ -65,5 +47,14 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: '/:path*',
+  matcher: [
+    '/dashboard/:path*',
+    '/admin-dashboard/:path*',
+    '/add-user/:path*',
+    '/app-settings/:path*',
+    '/users/:path*',
+    '/all-tasks/:path*',
+    '/account-settings/:path*',
+    '/tasks/:path*',
+  ],
 }

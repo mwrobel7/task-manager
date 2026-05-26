@@ -11,13 +11,6 @@ export default function SettingsPage() {
           <h1 className="text-3xl font-bold">
             Ustawienia konta
           </h1>
-
-          <Link
-            href="/dashboard"
-            className="border px-4 py-2 rounded"
-          >
-            Wróć do pulpitu
-          </Link>
         </div>
       </section>
     </main>

@@ -52,7 +52,7 @@ export default async function Sidebar() {
             </Link>
 
             <Link
-              href="/account-settings"
+              href="/settings"
               className="border p-4 rounded"
             >
               Ustawienia konta

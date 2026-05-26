@@ -8,12 +8,6 @@ export default function AppSettingsPage() {
       <h1 className="text-3xl font-bold">
         Ustawienia aplikacji
       </h1>
-      <Link
-            href="/admin-dashboard"
-            className="border px-4 py-2 rounded"
-          >
-            Wróć do pulpitu
-          </Link>
     </main>
   )
 }

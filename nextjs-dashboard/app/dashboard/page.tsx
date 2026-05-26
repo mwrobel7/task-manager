@@ -16,35 +16,41 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen p-10">
-      <div className="flex items-center justify-between mb-10">
-        <h1 className="text-3xl font-bold">
+    <main className="min-h-screen flex">
+      <aside className="w-72 border-r p-6 flex flex-col">
+        <h1 className="text-2xl font-bold mb-10">
           Dashboard
         </h1>
 
+        <nav className="flex flex-col gap-4">
+          <Link
+            href="/account-settings"
+            className="border p-4 rounded"
+          >
+            Ustawienia konta
+          </Link>
+
+          <Link
+            href="/tasks"
+            className="border p-4 rounded"
+          >
+            Lista zadań
+          </Link>
+        </nav>
+
         <button
           onClick={handleLogout}
-          className="border px-4 py-2 rounded"
+          className="mt-auto border p-4 rounded"
         >
           Wyloguj się
         </button>
-      </div>
+      </aside>
 
-      <div className="grid gap-4 max-w-md">
-        <Link
-          href="/settings"
-          className="border p-4 rounded"
-        >
-          Ustawienia konta
-        </Link>
-
-        <Link
-          href="/tasks"
-          className="border p-4 rounded"
-        >
-          Podgląd listy zadań
-        </Link>
-      </div>
+      <section className="flex-1 p-10">
+        <h2 className="text-3xl font-bold">
+          Witaj
+        </h2>
+      </section>
     </main>
   )
 }

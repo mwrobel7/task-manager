@@ -32,15 +32,17 @@ export async function POST(req: Request) {
           title,
           description,
           person_or_team,
-          due_date
+          due_date,
+          status
         )
-        VALUES ($1, $2, $3, $4)
+        VALUES ($1, $2, $3, $4, $5)
       `,
       [
         title,
         description,
         personOrTeam,
         dueDate,
+        false,
       ]
     )
 

@@ -1,6 +1,7 @@
 import { pool } from '@/app/lib/db'
 import { cookies } from 'next/headers'
 import { jwtVerify } from 'jose'
+import CompleteTaskButton from './completeTaskButton'
 
 const secret = new TextEncoder().encode(
   process.env.JWT_SECRET
@@ -33,7 +34,8 @@ export default async function TasksList() {
         description,
         person_or_team,
         curr_date,
-        due_date
+        due_date,
+        status
       FROM tasks
       WHERE
         person_or_team = $1
@@ -87,6 +89,18 @@ export default async function TasksList() {
                 task.due_date
               ).toLocaleDateString()}
             </p>
+
+            <p>
+  <strong>Status:</strong>{' '}
+  {task.status
+    ? 'Skończone'
+    : 'Nie skończone'}
+</p>
+{!task.status && (
+  <CompleteTaskButton
+    taskId={task.id}
+  />
+)}
           </div>
         </div>
       ))}

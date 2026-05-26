@@ -1,4 +1,5 @@
 import { pool } from '@/app/lib/db'
+import CompleteTaskButton from './completeTaskButton'
 
 export default async function AllTasksList() {
   const result = await pool.query(`
@@ -8,7 +9,8 @@ export default async function AllTasksList() {
       description,
       person_or_team,
       curr_date,
-      due_date
+      due_date,
+      status
     FROM tasks
     ORDER BY person_or_team ASC
   `)
@@ -57,6 +59,18 @@ export default async function AllTasksList() {
                 task.due_date
               ).toLocaleDateString()}
             </p>
+
+            <p>
+  <strong>Status:</strong>{' '}
+  {task.status
+    ? 'Skończone'
+    : 'Nie skończone'}
+</p>
+{!task.status && (
+  <CompleteTaskButton
+    taskId={task.id}
+  />
+)}
           </div>
         </div>
       ))}

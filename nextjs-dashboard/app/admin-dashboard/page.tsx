@@ -33,6 +33,22 @@ export default function AdminDashboardPage() {
     router.push('/login')
   }
 
+  const handleDelete = async (id: number) => {
+    const res = await fetch(
+      `/api/delete-temporary-user/${id}`,
+      {
+        method: 'DELETE',
+        credentials: 'include',
+      }
+    )
+
+    if (res.ok) {
+      setUsers((prev) =>
+        prev.filter((user) => user.id !== id)
+      )
+    }
+  }
+
   return (
     <main className="min-h-screen flex">
       <aside className="w-72 border-r p-6 flex flex-col">
@@ -85,17 +101,25 @@ export default function AdminDashboardPage() {
 
         <div className="space-y-4 max-w-2xl">
           {users.map((user) => (
-            <Link
+            <div
               key={user.id}
-              href={`/add-user/${user.id}`}
-              className="block border p-4 rounded"
-            >
-              <p>
-                {user.first_name} {user.last_name}
-              </p>
+              className="border p-4 rounded flex items-center justify-between gap-4">
+              <Link
+                href={`/add-user/${user.id}`}
+                className="flex-1">
+                <p>
+                  {user.first_name} {user.last_name}
+                </p>
 
-              <p>{user.email}</p>
-            </Link>
+                <p>{user.email}</p>
+              </Link>
+
+              <button
+                onClick={() => handleDelete(user.id)}
+                className="border px-4 py-2 rounded">
+                Usuń
+              </button>
+            </div>
           ))}
         </div>
       </section>

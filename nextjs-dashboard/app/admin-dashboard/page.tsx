@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import Sidebar from '../components/sidebar'
 
 type TempUser = {
   id: number
@@ -20,8 +20,6 @@ export default function AdminDashboardPage() {
   personOrTeam: '',
   dueDate: '',
 })
-
-  const router = useRouter()
 
   useEffect(() => {
     fetch('/api/temporary-users')
@@ -64,15 +62,6 @@ export default function AdminDashboardPage() {
   })
 }
 
-  const handleLogout = async () => {
-    await fetch('/api/logout', {
-      method: 'POST',
-      credentials: 'include',
-    })
-
-    router.push('/login')
-  }
-
   const handleDelete = async (id: number) => {
     const res = await fetch(
       `/api/delete-user/${id}`,
@@ -91,48 +80,7 @@ export default function AdminDashboardPage() {
 
   return (
     <main className="min-h-screen flex">
-      <aside className="w-72 border-r p-6 flex flex-col">
-        <h1 className="text-2xl font-bold mb-10">
-          Admin Panel
-        </h1>
-
-        <nav className="flex flex-col gap-4">
-          <Link
-            href="/app-settings"
-            className="border p-4 rounded"
-          >
-            Ustawienia aplikacji
-          </Link>
-
-          <Link
-            href="/account-settings"
-            className="border p-4 rounded"
-          >
-            Ustawienia konta
-          </Link>
-
-          <Link
-            href="/users"
-            className="border p-4 rounded"
-          >
-            Lista użytkowników
-          </Link>
-
-          <Link
-            href="/all-tasks"
-            className="border p-4 rounded"
-          >
-            Wszystkie zadania
-          </Link>
-        </nav>
-
-        <button
-          onClick={handleLogout}
-          className="mt-auto border p-4 rounded"
-        >
-          Wyloguj się
-        </button>
-      </aside>
+      <Sidebar />
 
       <section className="flex-1 p-10">
   <h2 className="text-3xl font-bold mb-8">

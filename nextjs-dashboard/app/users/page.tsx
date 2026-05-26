@@ -26,7 +26,7 @@ export default function UsersPage() {
 
   return (
     <main className="min-h-screen flex">
-      <Sidebar admin={true} />
+      <Sidebar />
       <h1 className="text-3xl font-bold mb-10">
         Lista użytkowników
       </h1>

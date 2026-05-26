@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar";
 export default function SettingsPage() {
   return (
     <main className="min-h-screen flex">
-      <Sidebar admin={false} />
+      <Sidebar />
 
       <section className="flex-1 p-10">
         <div className="flex items-center justify-between mb-10">

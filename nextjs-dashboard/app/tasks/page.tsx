@@ -27,7 +27,7 @@ export default function TasksPage() {
   }, [])
 
   return (
-    <main className="min-h-screen p-10">
+    <main className="min-h-screen flex">
       <Sidebar admin={false} />
       <h1 className="text-3xl font-bold mb-10">
         Moje zadania

@@ -35,7 +35,7 @@ export default function AdminDashboardPage() {
 
   const handleDelete = async (id: number) => {
     const res = await fetch(
-      `/api/delete-temporary-user/${id}`,
+      `/api/delete-user/${id}`,
       {
         method: 'DELETE',
         credentials: 'include',

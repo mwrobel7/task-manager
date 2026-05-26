@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Sidebar from '../components/sidebar'
+import Link from 'next/link'
 
 type Task = {
   id: number
@@ -24,9 +26,16 @@ export default function AllTasksPage() {
 
   return (
     <main className="min-h-screen p-10">
+      <Sidebar admin={true} />
       <h1 className="text-3xl font-bold mb-10">
         Wszystkie zadania
       </h1>
+      <Link
+          href="/admin-dashboard"
+          className="border px-4 py-2 rounded"
+        >
+          Wróć do pulpitu
+        </Link>
 
       <div className="space-y-4">
         {tasks.map((task) => (

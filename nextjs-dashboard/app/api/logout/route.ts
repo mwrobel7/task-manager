@@ -1,19 +1,14 @@
 export const runtime = 'nodejs'
 
 import { NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 
 export async function POST() {
-  const response = NextResponse.json({
+  const cookieStore = await cookies()
+
+  cookieStore.delete('token')
+
+  return NextResponse.json({
     success: true,
   })
-
-  response.cookies.set('token', '', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    expires: new Date(0),
-    path: '/',
-  })
-
-  return response
 }

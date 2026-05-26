@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { pool } from '@/app/lib/db'
+import { cookies } from 'next/headers'
 
 export async function POST(req: Request) {
   try {
@@ -53,12 +54,9 @@ export async function POST(req: Request) {
       }
     )
 
-    const response = NextResponse.json({
-      success: true,
-      admin: user.admin,
-    })
+    const cookieStore = await cookies()
 
-    response.cookies.set('token', token, {
+    cookieStore.set('token', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'lax',
@@ -66,7 +64,10 @@ export async function POST(req: Request) {
       maxAge: 60 * 60 * 24 * 7,
     })
 
-    return response
+    return NextResponse.json({
+      success: true,
+      admin: user.admin,
+    })
   } catch (error) {
     console.error(error)
 

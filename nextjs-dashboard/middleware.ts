@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import jwt from 'jsonwebtoken'
+import { jwtVerify } from 'jose'
 
-export function middleware(req: NextRequest) {
+const secret = new TextEncoder().encode(
+  process.env.JWT_SECRET
+)
+
+export async function middleware(req: NextRequest) {
   const token = req.cookies.get('token')?.value
 
   if (!token) {
@@ -11,12 +15,10 @@ export function middleware(req: NextRequest) {
   }
 
   try {
-    const decoded = jwt.verify(
+    const { payload } = await jwtVerify(
       token,
-      process.env.JWT_SECRET!
-    ) as {
-      admin: boolean
-    }
+      secret
+    )
 
     const pathname = req.nextUrl.pathname
 
@@ -32,7 +34,7 @@ export function middleware(req: NextRequest) {
       pathname.startsWith(route)
     )
 
-    if (isAdminRoute && !decoded.admin) {
+    if (isAdminRoute && !payload.admin) {
       return NextResponse.redirect(
         new URL('/dashboard', req.url)
       )

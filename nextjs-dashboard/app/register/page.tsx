@@ -62,7 +62,6 @@ export default function Register()
 style={{
   background: 'var(--card)',
 }}>Zarejestruj się</button>
-                <br/><br/><br/><br/>
                 {message && (
                     <p className="text-sm">
                         {message}

@@ -53,7 +53,7 @@ export default function TaskForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl space-y-4"
+        className="max-w-2xl space-y-4 p-6 rounded-xl"
       >
         <input
           type="text"

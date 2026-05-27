@@ -48,8 +48,9 @@ export default async function Sidebar() {
               href="/admin-dashboard"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Powrót do pulpitu
             </Link>
@@ -58,8 +59,9 @@ style={{
               href="/app-settings"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Ustawienia aplikacji
             </Link>
@@ -68,8 +70,9 @@ style={{
               href="/settings"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Ustawienia konta
             </Link>
@@ -78,8 +81,9 @@ style={{
               href="/users"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Lista użytkowników
             </Link>
@@ -88,8 +92,9 @@ style={{
               href="/all-tasks"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Wszystkie zadania
             </Link>
@@ -100,8 +105,9 @@ style={{
               href="/dashboard"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Powrót do pulpitu
             </Link>
@@ -110,8 +116,9 @@ style={{
               href="/account-settings"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Ustawienia konta
             </Link>
@@ -120,13 +127,15 @@ style={{
               href="/tasks"
               className="p-4 rounded"
 style={{
-  background: 'var(--card)',
-}}
+        background: 'var(--button)',
+        color: 'white',
+      }}
             >
               Lista zadań
             </Link>
           </>
         )}
+        <br />
         <LogoutButton />
       </nav>
     </aside>

@@ -54,15 +54,10 @@ export default function Register()
         <div className="min-h-screen flex items-center justify-center p-10">
             <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4 border p-6 rounded-xl">
                 <h2 className="text-2xl font-bold">Rejestracja</h2>
-                <br/><br/>
                 <input type="text" id="firstName" name="firstName" placeholder="Imię" value={formData.firstName} onChange={handleChange} className="w-full border p-3 rounded" required/>
-                <br/>
                 <input type="text" id="lastName" name="lastName" placeholder="Nazwisko" value={formData.lastName} onChange={handleChange} className="w-full border p-3 rounded" required/>
-                <br/>
                 <input type="email" id="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full border p-3 rounded" required/>
-                <br/>
                 <input type="password" id="password" name="password" placeholder="Hasło" value={formData.password} onChange={handleChange} className="w-full border p-3 rounded" required/>
-                <br/><br/>
                 <button type="submit" className="rounded p-5"
 style={{
   background: 'var(--card)',

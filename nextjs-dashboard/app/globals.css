@@ -36,10 +36,7 @@ body {
   color: var(--text);
 }
 
-form,
-input,
-textarea,
-select {
+form {
   background: var(--input);
   color: var(--text);
   border: none;

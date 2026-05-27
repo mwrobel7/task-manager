@@ -12,6 +12,9 @@ export default function Page() {
           <Link
             href="/register"
             className="border px-6 py-3 rounded"
+            style={{
+  background: 'var(--card)',
+}}
           >
             Utwórz konto
           </Link>
@@ -19,6 +22,9 @@ export default function Page() {
           <Link
             href="/login"
             className="border px-6 py-3 rounded"
+            style={{
+  background: 'var(--card)',
+}}
           >
             Zaloguj się
           </Link>

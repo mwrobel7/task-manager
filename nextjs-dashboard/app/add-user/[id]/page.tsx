@@ -102,7 +102,10 @@ export default function AddUserPage() {
 
         <button
           type="submit"
-          className="w-full bg-black text-white p-3 rounded"
+          className="rounded p-5"
+style={{
+  background: 'var(--card)',
+}}
         >
           Zatwierdź użytkownika
         </button>

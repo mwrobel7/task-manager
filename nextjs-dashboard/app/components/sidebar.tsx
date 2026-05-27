@@ -127,9 +127,8 @@ style={{
             </Link>
           </>
         )}
+        <LogoutButton />
       </nav>
-
-      <LogoutButton />
     </aside>
   )
 }

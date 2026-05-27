@@ -48,8 +48,7 @@ export default async function Sidebar() {
               href="/admin-dashboard"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Powrót do pulpitu
@@ -59,8 +58,7 @@ style={{
               href="/app-settings"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Ustawienia aplikacji
@@ -70,8 +68,7 @@ style={{
               href="/settings"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Ustawienia konta
@@ -81,8 +78,7 @@ style={{
               href="/users"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Lista użytkowników
@@ -92,8 +88,7 @@ style={{
               href="/all-tasks"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Wszystkie zadania
@@ -105,8 +100,7 @@ style={{
               href="/dashboard"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Powrót do pulpitu
@@ -116,8 +110,7 @@ style={{
               href="/account-settings"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
+        background: 'var(--card)',
       }}
             >
               Ustawienia konta
@@ -127,9 +120,8 @@ style={{
               href="/tasks"
               className="p-4 rounded"
 style={{
-        background: 'var(--button)',
-        color: 'white',
-      }}
+  background: 'var(--card)',
+}}
             >
               Lista zadań
             </Link>

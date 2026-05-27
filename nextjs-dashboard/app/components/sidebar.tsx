@@ -107,7 +107,7 @@ style={{
             </Link>
 
             <Link
-              href="/account-settings"
+              href="/settings"
               className="p-4 rounded"
 style={{
         background: 'var(--card)',

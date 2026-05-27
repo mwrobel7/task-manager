@@ -17,7 +17,11 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="mt-auto border p-4 rounded"
+      className="w-full p-4 rounded mb-8"
+      style={{
+        background: 'var(--button)',
+        color: 'white',
+      }}
     >
       Wyloguj się
     </button>

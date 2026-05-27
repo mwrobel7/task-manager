@@ -51,7 +51,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Użytkownik dodany do temporary_users'
+      message: 'Wysłano prośbę o rejestrację do admina'
     })
   } catch (error) {
     console.error(error)

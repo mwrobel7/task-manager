@@ -67,7 +67,10 @@ export default function Register()
                 <label>Hasło:</label><br/>
                 <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full border p-3 rounded" required/>
                 <br/><br/>
-                <button type="submit" className="w-full bg-black text-white p-3 rounded">Zarejestruj się</button>
+                <button type="submit" className="rounded p-5"
+style={{
+  background: 'var(--card)',
+}}>Zarejestruj się</button>
                 <br/><br/><br/><br/>
                 {message && (
                     <p className="text-sm">

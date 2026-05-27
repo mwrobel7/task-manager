@@ -16,7 +16,7 @@
 [data-theme='dark'] {
   --bg: #242729;
   --sidebar: #1e4e5f;
-  --input: #002f44;
+  --form: #002f44;
   --card: #2f3336;
   --primary: #0f2556;
   --accent: #002f44;
@@ -37,7 +37,15 @@ body {
 }
 
 form {
-  background: var(--input);
+  background: var(--form);
+  color: var(--text);
+  border: none;
+}
+
+input,
+textarea,
+select {
+  background: var(--bg);
   color: var(--text);
   border: none;
 }

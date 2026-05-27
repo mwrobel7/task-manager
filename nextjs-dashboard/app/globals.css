@@ -6,6 +6,7 @@
   --bg: #edf6f9;
   --sidebar: #a9d6e5;
   --card: #ffffff;
+  --input: #61A5C2;
   --primary: #3e517a;
   --accent: #61a5c2;
   --text: #1f2937;
@@ -15,6 +16,7 @@
 [data-theme='dark'] {
   --bg: #242729;
   --sidebar: #1e4e5f;
+  --input: #002f44;
   --card: #2f3336;
   --primary: #0f2556;
   --accent: #002f44;
@@ -31,5 +33,18 @@
 
 body {
   background: var(--bg);
+  color: var(--text);
+}
+
+input,
+textarea,
+select {
+  background: var(--input);
+  color: var(--text);
+  border: none;
+}
+
+input::placeholder,
+textarea::placeholder {
   color: var(--text);
 }

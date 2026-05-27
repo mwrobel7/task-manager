@@ -1,3 +1,35 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+:root {
+  --bg: #edf6f9;
+  --sidebar: #a9d6e5;
+  --card: #ffffff;
+  --primary: #3e517a;
+  --accent: #61a5c2;
+  --text: #1f2937;
+  --button: #b08ea2;
+}
+
+[data-theme='dark'] {
+  --bg: #242729;
+  --sidebar: #1e4e5f;
+  --card: #2f3336;
+  --primary: #0f2556;
+  --accent: #002f44;
+  --text: #f3f4f6;
+  --button: #823964;
+}
+
+* {
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}

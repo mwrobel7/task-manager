@@ -26,6 +26,9 @@ export default async function AwatingUsersList() {
           <div
             key={user.id}
             className="border p-4 rounded flex items-center justify-between gap-4"
+            style={{
+  background: 'var(--card)',
+}}
           >
             <Link
               href={`/add-user/${user.id}`}

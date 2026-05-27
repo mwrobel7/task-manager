@@ -22,7 +22,10 @@ export default async function AllTasksList() {
       {tasks.map((task) => (
         <div
           key={task.id}
-          className="border rounded p-5"
+          className="rounded p-5"
+style={{
+  background: 'var(--card)',
+}}
         >
           <div className="mb-4">
             <h2 className="text-xl font-bold">

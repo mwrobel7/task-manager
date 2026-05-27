@@ -1,5 +1,6 @@
 // @ts-ignore: allow importing global CSS without module declarations
 import "./globals.css";
+import { ThemeProvider } from "@/providers/themeProvider";
 
 export default function RootLayout({
   children,
@@ -8,7 +9,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

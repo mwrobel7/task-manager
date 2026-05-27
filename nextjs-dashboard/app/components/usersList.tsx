@@ -22,6 +22,9 @@ export default async function UsersList() {
         <div
           key={user.id}
           className="border p-4 rounded flex items-center justify-between"
+          style={{
+  background: 'var(--card)',
+}}
         >
           <div>
             <p className="font-semibold">
@@ -47,6 +50,9 @@ export default async function UsersList() {
           <Link
             href={`/edit-user/${user.id}`}
             className="border px-4 py-2 rounded"
+            style={{
+  background: 'var(--card)',
+}}
           >
             Edytuj
           </Link>
